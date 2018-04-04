@@ -8,6 +8,9 @@
   },
   "author": "Janic Duplessis",
   "license": "MIT",
+  "bin": {
+    "pour": "./src/index.js"
+  },
   "jest": {
     "testEnvironment": "node",
     "transform": {

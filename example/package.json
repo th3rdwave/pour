@@ -1,0 +1,14 @@
+{
+  "name": "Huge Monorepo",
+  "workspaces": ["app", "api", "shared"],
+  "pour": {
+    "projects": [
+      { "name": "shared" },
+      { "name": "app", "dependencies": ["shared"] },
+      { "name": "api", "dependencies": ["shared"] }
+    ]
+  },
+  "devDependencies": {
+    "pour": "^1.0.0"
+  }
+}
