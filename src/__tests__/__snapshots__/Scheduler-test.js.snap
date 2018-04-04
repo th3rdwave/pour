@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DependencyGraph runs tasks in the right order 1`] = `
+Array [
+  Array [
+    Object {
+      "project": Object {
+        "name": "shared",
+      },
+      "rootDir": "",
+    },
+  ],
+  Array [
+    Object {
+      "project": Object {
+        "name": "api",
+      },
+      "rootDir": "",
+    },
+  ],
+  Array [
+    Object {
+      "project": Object {
+        "name": "app",
+      },
+      "rootDir": "",
+    },
+  ],
+]
+`;

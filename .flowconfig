@@ -1,0 +1,14 @@
+[ignore]
+
+[include]
+
+[libs]
+flow-typed
+
+[options]
+include_warnings=true
+emoji=true
+
+module.use_strict=true
+
+munge_underscores=true

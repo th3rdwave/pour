@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DependencyGraph creates a simple graph 1`] = `
+Object {
+  "edges": Array [
+    Object {
+      "edges": Array [
+        Object {
+          "edges": Array [],
+          "node": Object {
+            "name": "shared",
+          },
+        },
+      ],
+      "node": Object {
+        "dependencies": Array [
+          "shared",
+        ],
+        "name": "app",
+      },
+    },
+    Object {
+      "edges": Array [
+        Object {
+          "edges": Array [],
+          "node": Object {
+            "name": "shared",
+          },
+        },
+      ],
+      "node": Object {
+        "dependencies": Array [
+          "shared",
+        ],
+        "name": "api",
+      },
+    },
+    Object {
+      "edges": Array [],
+      "node": Object {
+        "name": "shared",
+      },
+    },
+  ],
+  "node": Object {
+    "name": "root",
+  },
+}
+`;
+
+exports[`DependencyGraph removes all nodes by name 1`] = `
+Object {
+  "edges": Array [
+    Object {
+      "edges": Array [],
+      "node": Object {
+        "dependencies": Array [
+          "shared",
+        ],
+        "name": "app",
+      },
+    },
+    Object {
+      "edges": Array [],
+      "node": Object {
+        "dependencies": Array [
+          "shared",
+        ],
+        "name": "api",
+      },
+    },
+  ],
+  "node": Object {
+    "name": "root",
+  },
+}
+`;
