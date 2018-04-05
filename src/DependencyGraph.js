@@ -66,7 +66,8 @@ const traverse = (
  * Remove a project by name from the graph (in place).
  */
 const remove = (projectName: string, graph: ProjectGraph): void => {
-  for (const [i, e] of graph.edges.entries()) {
+  for (let i = graph.edges.length - 1; i >= 0; i--) {
+    const e = graph.edges[i];
     if (e.node.name === projectName) {
       graph.edges.splice(i, 1);
     } else {

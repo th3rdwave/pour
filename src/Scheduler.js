@@ -5,7 +5,13 @@ const Worker = require('./Worker');
 
 import type { ProjectGraph } from './DependencyGraph';
 
-const start = (graph: ProjectGraph, rootDir: string): Promise<void> => {
+type Options = {
+  dependencies: ProjectGraph,
+  rootDir: string,
+  metaDir: string,
+};
+
+const start = ({ dependencies, rootDir, metaDir }): Promise<void> => {
   const startedProjects = new Set();
   const getNextProject = () => {
     let projectToRun = null;
@@ -15,7 +21,7 @@ const start = (graph: ProjectGraph, rootDir: string): Promise<void> => {
         return false;
       }
       return true;
-    }, graph);
+    }, dependencies);
     if (projectToRun) {
       startedProjects.add(projectToRun.name);
     }
@@ -31,7 +37,7 @@ const start = (graph: ProjectGraph, rootDir: string): Promise<void> => {
         tasks.push(curProject);
       }
     } while (curProject !== null);
-    if (tasks.length === 0 && graph.edges.length === 0) {
+    if (tasks.length === 0 && dependencies.edges.length === 0) {
       // Actually done!!
       resolve();
       return;
@@ -39,7 +45,7 @@ const start = (graph: ProjectGraph, rootDir: string): Promise<void> => {
       for (const t of tasks) {
         Worker.run({ project: t, rootDir })
           .then(() => {
-            DependencyGraph.remove(t.name, graph);
+            DependencyGraph.remove(t.name, dependencies);
             // Check if new tasks are available to be executed.
             executeTasks(resolve, reject);
           })

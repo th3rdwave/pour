@@ -1,7 +1,10 @@
 {
   "name": "app",
   "version": "1.0.0",
+  "scripts": {
+    "test": "echo testing..."
+  },
   "dependencies": {
-    "shared": "1.0.0"
+    "shared": "file:../shared"
   }
 }

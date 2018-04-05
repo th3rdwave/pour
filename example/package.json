@@ -1,6 +1,6 @@
 {
-  "name": "Huge Monorepo",
-  "workspaces": ["app", "api", "shared"],
+  "name": "huge-monorepo",
+  "private": true,
   "pour": {
     "projects": [
       { "name": "shared" },

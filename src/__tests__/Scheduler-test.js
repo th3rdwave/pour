@@ -25,7 +25,7 @@ describe('DependencyGraph', () => {
       ],
     };
 
-    await Scheduler.start(graph, '');
+    await Scheduler.start({ dependencies: graph, rootDir: '', metaDir: '' });
 
     expect(run.mock.calls).toMatchSnapshot();
   });
