@@ -1,6 +1,6 @@
 {
   "name": "@th3rdwave/pour",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -15,7 +15,11 @@
   "bin": {
     "pour": "lib/index.js"
   },
-  "files": ["lib", "README.md", "LICENSE"],
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "jest": {
     "testEnvironment": "node",
     "transform": {
