@@ -2,7 +2,8 @@
   "name": "api",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo testing..."
+    "test": "echo testing...",
+    "deploy": "echo \"to the cloud!\""
   },
   "dependencies": {
     "shared": "file:../shared"

@@ -4,8 +4,6 @@ const child = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
 
-const Hash = require('./Hash');
-
 import type { Project } from './DependencyGraph';
 
 const runYarn = (command: string, cwd: string): Promise<{ code: number }> =>
@@ -34,9 +32,14 @@ type WorkerParams = {
 
 const run = async ({ project, rootDir, metaDir }: WorkerParams) => {
   const projectPath = path.join(rootDir, project.name);
-  const sha1sum = await Hash.sha1sum(projectPath);
+  const packageJson = await fs.readJson(path.join(projectPath, 'package.json'));
   await runYarn('install', projectPath);
-  await runYarn('test', projectPath);
+  if (packageJson.scripts && packageJson.scripts.test) {
+    await runYarn('test', projectPath);
+  }
+  if (packageJson.scripts && packageJson.scripts.deploy) {
+    await runYarn('deploy', projectPath);
+  }
 };
 
 module.exports = {
