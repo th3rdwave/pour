@@ -13,7 +13,7 @@ const DependencyGraph = require('./DependencyGraph');
 const Scheduler = require('./Scheduler');
 
 program
-  .version('0.1.0')
+  .version(require('../package.json').version, '-v, --version')
   .option(
     '-r, --root [path]',
     'The root directory of the monorepo, relative to the cwd.'
