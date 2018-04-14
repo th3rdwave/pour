@@ -50,15 +50,21 @@ const start = async ({
     // Compute hashes once for each project.
     const projectsMetaInfo = new Map(
       await Promise.all(
-        DependencyGraph.mapOnce(async ({ node: { name, dependencies } }) => {
-          const meta = await getCachedSha1Sum(metaDir, name);
-          const projectPath = path.join(rootDir, name);
-          const sha1sum = await Hash.sha1sum(projectPath);
-          return [
-            name,
-            { name, dependencies, dirty: sha1sum !== meta, sha1sum },
-          ];
-        }, dependencies)
+        DependencyGraph.mapOnce(
+          async ({ node: { name, dependencies, ignore } }) => {
+            const meta = await getCachedSha1Sum(metaDir, name);
+            const projectPath = path.join(rootDir, name);
+            const sha1sum = await Hash.sha1sum(
+              projectPath,
+              ignore ? new Set(ignore) : null
+            );
+            return [
+              name,
+              { name, dependencies, dirty: sha1sum !== meta, sha1sum },
+            ];
+          },
+          dependencies
+        )
       )
     );
 

@@ -3,6 +3,7 @@
 export type Project = {
   name: string,
   dependencies?: ?Array<string>,
+  ignore?: ?Array<string>,
 };
 
 export type Config = {

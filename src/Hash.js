@@ -12,9 +12,16 @@ const addFileToHash = (file, hash) =>
     fileStream.on('error', reject);
   });
 
-const sha1sum = async (folder: string): Promise<string> => {
+const sha1sum = async (
+  folder: string,
+  // Only supports for top level folders for now
+  ignore: ?Set<string>
+): Promise<string> => {
   const hash = crypto.createHash('sha1');
-  const traverse = async node => {
+  const traverse = async (node, ignore) => {
+    if (ignore && ignore.has(path.basename(node))) {
+      return;
+    }
     const stat = await fs.stat(node);
     if (stat.isDirectory()) {
       const files = await fs.readdir(node);
@@ -28,7 +35,7 @@ const sha1sum = async (folder: string): Promise<string> => {
     }
   };
 
-  await traverse(folder);
+  await traverse(folder, ignore);
 
   return hash.digest('hex');
 };
