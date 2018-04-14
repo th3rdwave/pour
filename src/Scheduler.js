@@ -6,6 +6,7 @@ const path = require('path');
 
 const DependencyGraph = require('./DependencyGraph');
 const Hash = require('./Hash');
+const Log = require('./Log');
 const Worker = require('./Worker');
 
 import type { ProjectGraph, Project } from './DependencyGraph';
@@ -100,10 +101,10 @@ const start = async ({
             executeTasks();
           };
           if (hasProjectChanged(t.name, projectsMetaInfo)) {
-            console.log('Running task for ' + t.name);
+            Log.info('Running task for ' + t.name);
             Worker.run({ project: t, rootDir, metaDir })
               .then(async () => {
-                console.log('Finished task for ' + t.name);
+                Log.info('Finished task for ' + t.name);
                 await writeCachedSha1Sum(
                   metaDir,
                   t.name,
@@ -113,7 +114,7 @@ const start = async ({
               })
               .catch(reject);
           } else {
-            console.log('Skipping ' + t.name);
+            Log.info('Skipping ' + t.name);
             completeTask();
           }
         }

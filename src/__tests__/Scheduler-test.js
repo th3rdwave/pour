@@ -1,8 +1,11 @@
 // @flow
 
-jest.mock('fs-extra').mock('../Hash', () => ({
-  sha1sum: () => 'a',
-}));
+jest
+  .mock('fs-extra')
+  .mock('../Log')
+  .mock('../Hash', () => ({
+    sha1sum: () => 'a',
+  }));
 
 describe('Scheduler', () => {
   it('runs tasks in the right order', async () => {
