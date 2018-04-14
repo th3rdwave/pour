@@ -14,11 +14,10 @@ const addFileToHash = (file, hash) =>
 
 const sha1sum = async (
   folder: string,
-  // Only supports for top level folders for now
   ignore: ?Set<string>
 ): Promise<string> => {
   const hash = crypto.createHash('sha1');
-  const traverse = async (node, ignore) => {
+  const traverse = async node => {
     if (ignore && ignore.has(path.basename(node))) {
       return;
     }
@@ -35,7 +34,7 @@ const sha1sum = async (
     }
   };
 
-  await traverse(folder, ignore);
+  await traverse(folder);
 
   return hash.digest('hex');
 };
