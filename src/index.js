@@ -24,7 +24,7 @@ program
   .parse(process.argv);
 
 const run = async ({ root, projects, metaDir }) => {
-  const absoluteRoot = path.join(process.cwd(), root);
+  const absoluteRoot = root ? path.join(process.cwd(), root) : process.cwd();
   const rootPackageJson = await fs.readJson(
     path.join(absoluteRoot, 'package.json')
   );
