@@ -2,8 +2,6 @@
 
 // @flow
 
-require('flow-remove-types/register');
-
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');

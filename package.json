@@ -2,16 +2,20 @@
   "name": "@th3rdwave/pour",
   "version": "0.1.4",
   "description": "",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "node src/index.js --root ./example --meta ./example/pour-meta",
-    "test": "jest"
+    "start": "node lib/index.js --root ./example --meta ./example/pour-meta",
+    "test": "jest",
+    "build": "flow-remove-types --out-dir lib/ -i __tests__ src/",
+    "clean": "rimraf lib",
+    "prepublish": "yarn clean && yarn build"
   },
   "author": "Janic Duplessis",
   "license": "MIT",
   "bin": {
-    "pour": "src/index.js"
+    "pour": "lib/index.js"
   },
+  "files": ["lib", "README.md", "LICENSE"],
   "jest": {
     "testEnvironment": "node",
     "transform": {
@@ -21,12 +25,13 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "flow-bin": "^0.69.0",
+    "flow-remove-types": "^1.2.3",
     "jest": "^22.4.3",
-    "prettier": "^1.11.1"
+    "prettier": "^1.11.1",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "commander": "^2.15.1",
-    "flow-remove-types": "^1.2.3",
     "fs-extra": "^5.0.0",
     "nullthrows": "^1.0.1"
   }
