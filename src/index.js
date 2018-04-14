@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // @flow
 
 require('flow-remove-types/register');
