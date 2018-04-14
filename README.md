@@ -1,5 +1,6 @@
 # Pour
 
+[![npm version](https://badge.fury.io/js/%40th3rdwave%2Fpour.svg)](https://badge.fury.io/js/%40th3rdwave%2Fpour)
 [![CircleCI](https://circleci.com/gh/th3rdwave/pour.svg?style=svg)](https://circleci.com/gh/th3rdwave/pour)
 
 ### Simple CI tool for yarn based monorepos
