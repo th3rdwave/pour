@@ -1,6 +1,6 @@
 // @flow
 
-const info = (...args) => console.log(...args);
+const info = (...args: any) => console.log(...args);
 
 module.exports = {
   info,
