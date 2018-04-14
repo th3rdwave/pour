@@ -1,18 +1,28 @@
 # Pour
 
-## WIP (not finished :o)
+[![CircleCI](https://circleci.com/gh/th3rdwave/pour.svg?style=svg)](https://circleci.com/gh/th3rdwave/pour)
 
 ### Simple CI tool for yarn based monorepos
 
 The goal of this project is to simplify running tests and deploying projects in a monorepo. It tracks changed files to rebuild, test and deploy only if a project, or one of its dependency has changed.
 
+## Install
+
+```
+npm i -g @th3rdwave/pour
+```
+
 ## Usage
 
 ```
-pour [options] [commands]
-  commands: Run only specified commands instead of all, commands are "install", "test" and "deploy".
-  options:
-    -p, --projects  Run only specific projects and their dependencies.
+pour [options]
+
+Options:
+
+  -v, --version      output the version number
+  -r, --root [path]  The root directory of the monorepo, relative to the cwd.
+  -m, --meta [path]  Directory where metadata about changed files is saved.
+  -h, --help         output usage information
 ```
 
 ## TODO
