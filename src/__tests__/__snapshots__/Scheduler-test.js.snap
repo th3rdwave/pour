@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DependencyGraph runs tasks in the right order 1`] = `
+exports[`Scheduler runs tasks in the right order 1`] = `
 Array [
   Array [
     Object {
+      "metaDir": "",
       "project": Object {
         "name": "shared",
       },
@@ -12,6 +13,7 @@ Array [
   ],
   Array [
     Object {
+      "metaDir": "",
       "project": Object {
         "name": "api",
       },
@@ -20,6 +22,7 @@ Array [
   ],
   Array [
     Object {
+      "metaDir": "",
       "project": Object {
         "name": "app",
       },

@@ -14,7 +14,6 @@ const addFileToHash = (file, hash) =>
 
 const sha1sum = async (folder: string): Promise<string> => {
   const hash = crypto.createHash('sha1');
-  console.log(folder);
   const traverse = async node => {
     const stat = await fs.stat(node);
     if (stat.isDirectory()) {

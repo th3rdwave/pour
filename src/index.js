@@ -32,6 +32,8 @@ const run = async ({ root, projects, metaDir }) => {
     throw new Error('Missing config');
   }
 
+  await fs.ensureDir(metaDir);
+
   const dependencies = DependencyGraph.create(rootPackageJson.pour);
   try {
     await Scheduler.start({ dependencies, rootDir: absoluteRoot, metaDir });
@@ -41,4 +43,5 @@ const run = async ({ root, projects, metaDir }) => {
   console.log('Finished');
 };
 
-run({ root: program.root, projects: program.projects, metaDir: program.meta });
+const options = program.opts();
+run({ root: options.root, projects: options.projects, metaDir: options.meta });

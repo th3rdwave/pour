@@ -1,9 +1,12 @@
 // @flow
 
-describe('DependencyGraph', () => {
+jest.mock('fs-extra').mock('../Hash');
+
+describe('Scheduler', () => {
   it('runs tasks in the right order', async () => {
     // Setup worker mock.
     jest.resetModules();
+    // $FlowFixMe
     const run = jest.fn().mockResolvedValue();
     jest.doMock('../Worker', () => ({
       run,

@@ -48,6 +48,31 @@ describe('DependencyGraph', () => {
     expect(cb).toHaveBeenCalledTimes(5);
   });
 
+  it('maps once a graph', () => {
+    const config = {
+      projects: [
+        {
+          name: 'app',
+          dependencies: ['shared'],
+        },
+        {
+          name: 'api',
+          dependencies: ['shared'],
+        },
+        {
+          name: 'shared',
+        },
+      ],
+    };
+
+    const graph = DependencyGraph.create(config);
+
+    const cb = jest.fn(e => e.node.name);
+    const res = DependencyGraph.mapOnce(cb, graph);
+    expect(cb).toHaveBeenCalledTimes(3);
+    expect(res).toMatchSnapshot();
+  });
+
   it('removes all nodes by name', () => {
     const config = {
       projects: [

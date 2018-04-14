@@ -2475,6 +2475,10 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+nullthrows@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/nullthrows/-/nullthrows-1.0.1.tgz#db2129889ca3188c323fb71b1be3f4a317e3f106"
+
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"

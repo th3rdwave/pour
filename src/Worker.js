@@ -1,6 +1,7 @@
 // @flow
 
 const child = require('child_process');
+const fs = require('fs-extra');
 const path = require('path');
 
 const Hash = require('./Hash');
@@ -28,12 +29,12 @@ const runYarn = (command: string, cwd: string): Promise<{ code: number }> =>
 type WorkerParams = {
   project: Project,
   rootDir: string,
+  metaDir: string,
 };
 
-const run = async ({ project, rootDir }: WorkerParams) => {
+const run = async ({ project, rootDir, metaDir }: WorkerParams) => {
   const projectPath = path.join(rootDir, project.name);
   const sha1sum = await Hash.sha1sum(projectPath);
-  console.log(sha1sum);
   await runYarn('install', projectPath);
   await runYarn('test', projectPath);
 };

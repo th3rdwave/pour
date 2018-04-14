@@ -48,6 +48,14 @@ Object {
 }
 `;
 
+exports[`DependencyGraph maps once a graph 1`] = `
+Array [
+  "shared",
+  "api",
+  "app",
+]
+`;
+
 exports[`DependencyGraph removes all nodes by name 1`] = `
 Object {
   "edges": Array [

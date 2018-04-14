@@ -63,6 +63,27 @@ const traverse = (
 };
 
 /**
+ * Map each unique edge in the graph (based on node.name).
+ */
+const mapOnce = <T>(
+  callback: (Edge<Project>) => T,
+  graph: ProjectGraph
+): Array<T> => {
+  const seen = new Set();
+  const result = [];
+  let queue = [...graph.edges];
+  while (queue.length > 0) {
+    const edge = queue.pop();
+    if (!seen.has(edge.node.name)) {
+      result.push(callback(edge));
+      queue = queue.concat(edge.edges);
+      seen.add(edge.node.name);
+    }
+  }
+  return result;
+};
+
+/**
  * Remove a project by name from the graph (in place).
  */
 const remove = (projectName: string, graph: ProjectGraph): void => {
@@ -80,4 +101,5 @@ module.exports = {
   create,
   traverse,
   remove,
+  mapOnce,
 };
