@@ -4,7 +4,14 @@ exports[`Scheduler runs tasks in the right order 1`] = `
 Array [
   Array [
     Object {
-      "metaDir": "",
+      "project": Object {
+        "name": "root",
+      },
+      "rootDir": "",
+    },
+  ],
+  Array [
+    Object {
       "project": Object {
         "name": "shared",
       },
@@ -13,7 +20,6 @@ Array [
   ],
   Array [
     Object {
-      "metaDir": "",
       "project": Object {
         "name": "api",
       },
@@ -22,7 +28,6 @@ Array [
   ],
   Array [
     Object {
-      "metaDir": "",
       "project": Object {
         "name": "app",
       },

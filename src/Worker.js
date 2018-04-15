@@ -27,13 +27,17 @@ const runYarn = (command: string, cwd: string): Promise<{ code: number }> =>
 type WorkerParams = {
   project: Project,
   rootDir: string,
-  metaDir: string,
 };
 
-const run = async ({ project, rootDir, metaDir }: WorkerParams) => {
+const install = async ({ project, rootDir }: WorkerParams): Promise<void> => {
   const projectPath = path.join(rootDir, project.name);
-  const packageJson = await fs.readJson(path.join(projectPath, 'package.json'));
   await runYarn('install --non-interactive --frozen-lockfile', projectPath);
+};
+
+const run = async ({ project, rootDir }: WorkerParams): Promise<void> => {
+  const isRoot = project.name === 'root';
+  const projectPath = !isRoot ? path.join(rootDir, project.name) : rootDir;
+  const packageJson = await fs.readJson(path.join(projectPath, 'package.json'));
   if (packageJson.scripts && packageJson.scripts.test) {
     await runYarn('test', projectPath);
   }
@@ -44,4 +48,5 @@ const run = async ({ project, rootDir, metaDir }: WorkerParams) => {
 
 module.exports = {
   run,
+  install,
 };

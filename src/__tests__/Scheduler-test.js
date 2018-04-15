@@ -15,6 +15,7 @@ describe('Scheduler', () => {
     const run = jest.fn().mockResolvedValue();
     jest.doMock('../Worker', () => ({
       run,
+      install: jest.fn(),
     }));
     const Scheduler = require('../Scheduler');
 

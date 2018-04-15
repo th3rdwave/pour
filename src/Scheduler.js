@@ -47,6 +47,18 @@ const start = async ({
   metaDir,
 }: Options): Promise<void> =>
   new Promise(async (resolve, reject) => {
+    // Install dependencies for each project even if it did not change, this
+    // avoid failing if all build artifacts are not cached. Yarn is already good
+    // at not reinstalling if no changes.
+    await Promise.all(
+      DependencyGraph.mapOnce(async ({ node }) => {
+        await Worker.install({ project: node, rootDir });
+      }, dependencies)
+    );
+
+    // Execute root project tasks
+    await Worker.run({ project: dependencies.node, rootDir });
+
     // Compute hashes once for each project.
     const projectsMetaInfo = new Map(
       await Promise.all(
@@ -108,7 +120,7 @@ const start = async ({
           };
           if (hasProjectChanged(t.name, projectsMetaInfo)) {
             Log.info('Running task for ' + t.name);
-            Worker.run({ project: t, rootDir, metaDir })
+            Worker.run({ project: t, rootDir })
               .then(async () => {
                 Log.info('Finished task for ' + t.name);
                 await writeCachedSha1Sum(
