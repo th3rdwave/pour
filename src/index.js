@@ -35,11 +35,7 @@ const run = async ({ root, projects, metaDir }) => {
   await fs.ensureDir(metaDir);
 
   const dependencies = DependencyGraph.create(rootPackageJson.pour);
-  try {
-    await Scheduler.start({ dependencies, rootDir: absoluteRoot, metaDir });
-  } catch (err) {
-    console.error(err);
-  }
+  await Scheduler.start({ dependencies, rootDir: absoluteRoot, metaDir });
   console.log('Finished');
 };
 

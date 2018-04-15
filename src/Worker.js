@@ -33,7 +33,7 @@ type WorkerParams = {
 const run = async ({ project, rootDir, metaDir }: WorkerParams) => {
   const projectPath = path.join(rootDir, project.name);
   const packageJson = await fs.readJson(path.join(projectPath, 'package.json'));
-  await runYarn('install', projectPath);
+  await runYarn('install --non-interactive --frozen-lockfile', projectPath);
   if (packageJson.scripts && packageJson.scripts.test) {
     await runYarn('test', projectPath);
   }
